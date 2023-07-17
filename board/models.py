@@ -20,6 +20,9 @@ class Post(models.Model):
 
 class Comment(models.Model):
     # 해당 글을 지우면 그 댓글도 지울래
+     # 해당 글을 지우면 그 댓글도 지울래
+      # 해당 글을 지우면 그 댓글도 지울래
+      
     post = models.ForeignKey(Post, on_delete=models.CASCADE)   # post_id = 1
     content = models.TextField()
     reg_date = models.DateTimeField(auto_now_add=True)
