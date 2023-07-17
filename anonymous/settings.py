@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# user, board 추가
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'board'
 ]
 
+# auth_user 추가
 AUTH_USER_MODEL = 'user.User'
 
 MIDDLEWARE = [
@@ -55,10 +56,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'anonymous.urls'
 
+# DIRS에 templates 추가 -> 유지보수를 위해 templates를 따로 빼서 관리하겠다는 의미
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
