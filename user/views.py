@@ -40,5 +40,25 @@ def signin(request):
 def signup(request):
     if request.method == "GET":
         return render(request, 'page/signup.html')
+    
+    if request.method == "POST":
+        username=request.POST['username']
+        password=request.POST['password']
+        nickname=request.POST['nickname']
 
+        # 회원가입에서는 이미 id가 있는데 또 회원가입을 시키면 이중으로 가입이 되기 때문에 그걸 방지하기 위해 작성 (체크 과정)
+        user = User.objects.filter(username=username)
 
+        # exists - 존재하면 True, 존재하지 않으면 False
+        if user.exists():
+            messages.error(request, "이미 가입한 아이디 입니다.")
+            return redirect('signup')
+        else:
+            new_user = User(
+                username=username,
+                password=make_password(password), # django가 알아서 해주는 비밀번호 암호화
+                nickname=nickname,
+            )
+            new_user.save()
+            login(request, new_user)
+            return redirect("board")
