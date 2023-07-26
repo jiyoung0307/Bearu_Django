@@ -1,12 +1,29 @@
-<!-- 회원가입 및 로그인 페이지 -->
+<!-- 로그인 페이지 -->
 {% extends 'common/base.html' %}
 
 {% block content %}
-<label>ID</label>
-<input type="text">
+<!-- bootstrap 효과 넣기 -->
+<div class="card text-center">
+    <div class="card-body">
+        <div class="row text-center mt-3">
+            <div class="col">
+                <label class="form-label">ID</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
 
-<label>PWD</label>
-<input type="password">
+        <div class="row text-center" style="margin-top: 10px;">
+            <div class="col">
+                <label class="form-label">PWD</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
 
-<button>Login</button>
+        <div class="row text-end" style="margin-top: 10px;">
+            <div class="col">
+                <button class="btn btn-info">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

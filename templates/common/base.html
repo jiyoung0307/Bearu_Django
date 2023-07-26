@@ -1,7 +1,16 @@
 <html>
     <head>
         <title>Anonymous</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
+
+    <!-- 큰 영역을 잡고 싶을 때는 container
+    그 안의 한 행을 사용하고 싶을 때는 row
+    row 클래스 안에 여러가지 요소들 col을 사용
+    container
+        row
+            col col col -->
+
     <body>
         <!-- templates를 구성할 때는
         component를 만들고 싶을 때는 include
@@ -9,10 +18,11 @@
         block이 있는 어떠한 html을 확장시켜서 사용하고 싶을 때는 extends라는 것으로 불러와서 해당 block 안에 내용을
         작성을 하면 된다. -->
 
-        
-        <!-- 앞으로 이 base.html을 그대로 사용하지만 block부분만 작성을 하면 base.html을 재사용할 수 있다. -->
-        {% block content %}
-        {% endblock %}
-    </body>
+        <div class="container">
 
+        <!-- 앞으로 이 base.html을 그대로 사용하지만 block부분만 작성을 하면 base.html을 재사용할 수 있다. -->
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
 </html>
