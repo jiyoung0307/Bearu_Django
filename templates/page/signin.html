@@ -2,28 +2,62 @@
 {% extends 'common/base.html' %}
 
 {% block content %}
+
+<!-- 메세지 객체 -->
+{% for message in messages %}
+<!-- 메세지 객체는 리스트 형식으로 오기 때문에 반복문으로 작성 -->
+<div class="alert alert-primary" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
 <!-- bootstrap 효과 넣기 -->
 <div class="card text-center">
     <div class="card-body">
-        <div class="row text-center mt-3">
-            <div class="col">
-                <label class="form-label">ID</label>
-                <input class="form-control" type="text">
+        <form method="post" id="signin_form">
+            {% csrf_token %}
+            <div class="row text-center mt-3">
+                <div class="col">
+                    <label class="form-label">ID</label>
+                    <input class="form-control" type="text" name="username" id="username">
+                </div>
             </div>
-        </div>
 
-        <div class="row text-center" style="margin-top: 10px;">
-            <div class="col">
-                <label class="form-label">PWD</label>
-                <input class="form-control" type="text">
+            <div class="row text-center" style="margin-top: 10px;">
+                <div class="col">
+                    <label class="form-label">PWD</label>
+                    <input class="form-control" type="password" name="password" id="password">
+                </div>
             </div>
-        </div>
+        </form>
 
         <div class="row text-end" style="margin-top: 10px;">
             <div class="col">
-                <button class="btn btn-info">Login</button>
+                <!-- 회원가입 버튼 및 로그인 버튼 -->
+                <a style="color: black; font-weight: bold;" class="fs-5 text-decoration-none m-3" href="{% url 'signup' %}">회원가입</a>
+                <a style="color: black; font-weight: bold;" class="fs-5 text-decoration-none m-3" id="sign_btn">Login</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    let sign_btn = document.getElementById("sign_btn");
+    let password = document.getElementById("password");
+    let username = document.getElementById("username");
+    let signin_form = document.getElementById("signin_form");
+
+    sign_btn.addEventListener("click", ()=>{
+        if(!username.value){
+            alert("아이디를 입력해주세요")
+            return false;
+        }
+
+        if(!password.value){
+            alert("비밀번호를 입력해주세요")
+            return false;
+        }
+
+        signin_form.submit();
+    })
+</script>
 {% endblock %}
