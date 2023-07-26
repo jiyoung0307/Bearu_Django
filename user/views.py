@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
 from user.models import User
 
@@ -8,7 +8,7 @@ from user.models import User
 # 요청 객체의 방식은 보편적으로 총 4가지가 있다.
 # (물론 더 많이 존재한다.)
 
-# Create your views here.
+# 로그인
 def signin(request):
     # 값을 읽고싶을 때 GET - URL PARAMETERN (http:zy_zero37?title=안녕하세요)
     # 값을 지우고 싶을 때 DELETE - url에 무언가 같이 보내는 것이 default
@@ -36,7 +36,7 @@ def signin(request):
             messages.error(request, "입력값을 확인해주세요.")
             return redirect('signin')
 
-    # 회원가입
+# 회원가입
 def signup(request):
     if request.method == "GET":
         return render(request, 'page/signup.html')
@@ -62,3 +62,9 @@ def signup(request):
             new_user.save()
             login(request, new_user)
             return redirect("board")
+
+# 로그아웃
+def sign_out(request):
+    if request.method == "GET":
+        logout(request)
+        return redirect("board")
